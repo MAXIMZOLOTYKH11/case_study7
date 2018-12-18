@@ -30,10 +30,8 @@ try:
         stop_words = []
 
         for i in text:
-            if i[-1] in char:
-                i = i.replace(i[-1],'')
-                if i[0] in letter:
-                    start_words.append(i)
+            if i[0] in letter and i[-1] not in char:
+                start_words.append(i)
             else:
                 if i[0] in letter:
                     start_words.append(i)
@@ -65,9 +63,6 @@ try:
         j = sorted(diction.keys())
         j_1 = j[-1]
 
-        # d_1 = diction.pop(j_1)
-        print(diction)
-
         for i in range(number):
             first_word = random.choice(start_words)
             f_l = diction[first_word]
@@ -86,11 +81,11 @@ try:
                         while key_word in stop_words:
                             key_word = random.choice(j)
                             a_w_l = diction[key_word]
-                            add_word = random.choice(a_w_l)
-                if key_word in stop_words:
-                    print(key_word, end=' ')
-                else:
-                    print(key_word, end=' ')
+                            if a_w_l == {}:
+                                continue
+                            else:
+                                add_word = random.choice(a_w_l)
+                print(key_word, end=' ')
                 qw += 1
                 r = add_word
             if le == 0:
